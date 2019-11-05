@@ -1,4 +1,5 @@
 package edu.uom.currencymanager.currencyserver;
 
-public class DefaultyCurrencyServer {
+public interface CurrencyServerTest {
+
 }

@@ -1,5 +1,5 @@
 package edu.uom.currencymanager;
 
-public class CurrencyManager {
+public class CurrencyManagerTest {
 }
 

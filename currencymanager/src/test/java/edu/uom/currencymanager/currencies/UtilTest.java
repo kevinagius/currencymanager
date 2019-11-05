@@ -1,4 +1,4 @@
 package edu.uom.currencymanager.currencies;
 
-public class Currency {
+public class UtilTest {
 }
