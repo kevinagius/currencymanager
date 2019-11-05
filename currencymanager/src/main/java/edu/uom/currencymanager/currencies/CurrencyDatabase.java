@@ -20,6 +20,7 @@ public class CurrencyDatabase {
         init();
     }
 
+    //test
     public void init() throws Exception {
         //Initialise currency server
         currencyServer = new DefaultCurrencyServer();
