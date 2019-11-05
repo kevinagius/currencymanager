@@ -36,9 +36,6 @@ public class CurrencyDatabaseTest {
 
         //Verify
         assertEquals("KVN", currencyDatabase.getCurrencyByCode("KVN").code);
-
-        //Teardown
-        currencyDatabase.deleteCurrency("KVN");
     }
 
     @Test
@@ -54,15 +51,17 @@ public class CurrencyDatabaseTest {
     }
 
     @Test
+    public void testGetCurrencies() throws Exception{
+
+    }
+
+    @Test
     public void testAddCurrency() throws Exception{
         //Exercise
         currencyDatabase.addCurrency(currency);
 
         //Verify
         assertTrue(currencyDatabase.currencyExists("KVN"));
-
-        //Teardown
-        currencyDatabase.deleteCurrency("KVN");
     }
 
     @Test
