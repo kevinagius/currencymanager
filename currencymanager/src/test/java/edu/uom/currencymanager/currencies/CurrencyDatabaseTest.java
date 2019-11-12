@@ -27,6 +27,12 @@ public class CurrencyDatabaseTest {
     }
 
     @Test
+    public void testInit() throws Exception{
+
+
+    }
+
+    @Test
     public void testGetCurrencyByCode() throws Exception{
         //Setup
         currencyDatabase.addCurrency(currency);
@@ -56,6 +62,18 @@ public class CurrencyDatabaseTest {
     }
 
     @Test
+    public void testGetMajorCurrencies() throws Exception{
+
+
+    }
+
+    @Test
+    public void testGetExchangeRate() throws Exception{
+
+
+    }
+
+    @Test
     public void testAddCurrency() throws Exception{
         //Exercise
         currencyDatabase.addCurrency(currency);
@@ -76,7 +94,9 @@ public class CurrencyDatabaseTest {
         assertFalse(currencyDatabase.currencyExists("KVN"));
     }
 
+    @Test
+    public void testPersist() throws Exception{
 
 
-
+    }
 }
