@@ -4,3 +4,7 @@ EUR,Euro,yes
 GBP,British Pound,yes
 TRY,Turkish Lira,no
 USD,US Dollar,yes
+KVN,KevinBucks,yes
+KTH,KeithBucks,yes
+KVN,KevinBucks,yes
+KTH,KeithBucks,yes
