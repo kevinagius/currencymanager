@@ -1,87 +1,124 @@
-package pageobjects;
+package test.nextDefs;
 
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
-import cucumber.api.java.en.When;
 import cucumber.api.java.en.Then;
-import org.junit.After;
-import org.junit.Before;
-import static org.junit.Assert.*;
+import cucumber.api.java.en.When;
+import cucumber.api.java.en.And;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import static org.junit.Assert.*;
 
 public class NextStepDefs {
 
-    WebDriver driver;
+    static WebDriver browser;
 
-    public NextStepDefs(WebDriver driver){ this.driver = driver;}
-
-    public void sleep(int seconds) {
+    public static void sleep(int seconds) {
         try {
             Thread.sleep(seconds*1000);
         } catch (Exception e) {}
     }
 
-    public void get() { driver.get("https://www.zara.com/mt/");}
-
-    public boolean loggedIn(){
-
-        boolean loginstate = false;
-
-        if (driver.findElement(By.linkText("LOG IN")).isDisplayed()){
-            loginstate = false;
-
-        }else{
-            loginstate = true;
-
-        }
-
-        return loginstate;
-    }
-
-    public void logIn(){
-        driver.findElement(By.className("_accountLink _login account-link-login")).click();
-        sleep(5);
-
-        driver.findElement(By.name("email")).sendKeys("kevinuagius@gmail.com");
-        driver.findElement(By.name("password")).sendKeys("Abcd1234");
-        driver.findElement(By.id("login-button")).click();
-
-        sleep(3);
-    }
-
-
     @Before
-    public void setup() throws Exception{
-        System.setProperty("webdriver.chrome.driver", "./chromedriver");
-        driver = new ChromeDriver();
-        driver.get("https://www.zara.com/mt/");
+    public void setup() {
+        System.setProperty("webdriver.chrome.driver", "/users/Kevin/Downloads/chromedriver.exe");
+        browser = new ChromeDriver();
     }
 
     @After
-    public void teardown(){
-        driver.quit();
+    public void teardown() {
+        browser.quit();
     }
 
     @Given("I am a user on the website")
-    public void user(){
-
+    public void iAmAUserOnTheWebsite() {
+        browser.get("https://www.zara.com/mt/en/logon");
     }
 
     @When("I log in using valid credentials")
-    public void valid(){
-        //Setup
-        logIn();
-
-        //Exercise
-        String verify = driver.findElement(By.className("_accountLink _userName")).getText();
-
-        //Verify
-        assertEquals(verify,"Kevin");
+    public void iLogInUsingValidCredentials() {
+        browser.findElement(By.name("email")).sendKeys("kevinuagius@gmail.com");
+        browser.findElement(By.name("password")).sendKeys("Abcd1234");
+        browser.findElement(By.id("login-button")).click();
+        sleep(5);
     }
 
     @Then("I should be logged in")
-    public void then(){
-        assertEquals(loggedIn(), true);
+    public void iShouldBeLoggedIn() {
+        assertTrue(browser.findElement(By.linkText("KEVIN")).isDisplayed());
+    }
+
+    @When("I log in using invalid credentials")
+    public void iLogInUsingInvalidCredentials() {
+        browser.findElement(By.name("email")).sendKeys("wrong@email.com");
+        browser.findElement(By.name("password")).sendKeys("wrong");
+        browser.findElement(By.id("login-button")).click();
+        sleep(2);
+    }
+
+    @Then("I should not be logged in")
+    public void iShouldNotBeLoggedIn() {
+        assertTrue(browser.findElement(By.id("password-error")).isDisplayed());
+    }
+
+    @Given("I am a logged in user on the website")
+    public void iAmALoggedInUserOnTheWebsite(){
+        browser.get("https://www.zara.com/mt/en/logon");
+        browser.findElement(By.name("email")).sendKeys("kevinuagius@gmail.com");
+        browser.findElement(By.name("password")).sendKeys("Abcd1234");
+        browser.findElement(By.id("login-button")).click();
+        sleep(3);
+    }
+
+    @When("I search for a product")
+    public void iSearchForAProduct(){
+        browser.findElement(By.className("_searchButton")).click();
+        sleep(3);
+
+        browser.findElement(By.name("searchTerm")).sendKeys("coat");
+        sleep(3);
+    }
+
+    @And("I select the first product in the list")
+    public void iSelectTheFirstProductInTheList(){
+        browser.findElement(By.id("product-34721740")).click();
+        sleep(3);
+    }
+
+    @Then("I should see the product details")
+    public void iShouldSeeTheProductDetails(){
+        assertTrue(browser.findElement(By.linkText("SHORT COAT WITH BUTTONS")).isDisplayed());
+    }
+
+    @And("My shopping cart is empty")
+    public void myShoppingCartIsEmpty() {
+        assertTrue(browser.findElement(By.linkText("0")).isDisplayed());
+    }
+
+    @When("I view the details of a product")
+    public void iViewTheDetailsOfAProduct(){
+        browser.findElement(By.className("_searchButton")).click();
+        sleep(5);
+
+        browser.findElement(By.name("searchTerm")).sendKeys("bracelet");
+        sleep(5);
+
+        browser.findElement(By.id("product-34150014")).click();
+        sleep(5);
+
+
+    }
+
+    @And("I choose to buy the product")
+    public void iChooseToBuyTheProduct(){
+        browser.findElement(By.className("button button-primaryB button-big _add-to-cart-btn")).click();
+        sleep(10);
+    }
+
+    @Then("My shopping cart should contain 1 item")
+    public void myShoppingCartShouldContain1Item(){
+        assertTrue(browser.findElement(By.linkText("1")).isDisplayed());
     }
 }
