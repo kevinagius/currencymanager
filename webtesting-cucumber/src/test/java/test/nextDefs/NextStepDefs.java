@@ -73,6 +73,8 @@ public class NextStepDefs {
         browser.findElement(By.name("password")).sendKeys("Abcd1234");
         browser.findElement(By.id("login-button")).click();
         sleep(5);
+
+        //emptyCart();
     }
 
     public void emptyCart(){
@@ -104,12 +106,22 @@ public class NextStepDefs {
 
     @Then("I should see the product details")
     public void iShouldSeeTheProductDetails(){
-        assertTrue(browser.findElement(By.linkText("SHORT COAT WITH BUTTONS")).isDisplayed());
+        assertTrue(browser.findElement(By.linkText("SHORT BUTTONED COAT")).isDisplayed());
     }
 
     @And("My shopping cart is empty")
     public void myShoppingCartIsEmpty() {
-        assertEquals(browser.findElement(By.className("_mini-shop-cart-quantity")).getText(), "0");
+
+
+        //assertEquals("0", browser.findElement(By.className("_mini-shop-cart-quantity")).getText())
+
+        if(browser.findElement(By.className("_mini-shop-cart-quantity")).getText().equals("0")){
+
+        }else{
+            emptyCart();
+
+        }
+
     }
 
     @When("I view the details of a product")
@@ -134,25 +146,35 @@ public class NextStepDefs {
 
     @Then("My shopping cart should contain 1 item")
     public void myShoppingCartShouldContain1Item(){
-        browser.findElement(By.className("layout-header__logo-icon")).click();
-        sleep(3);
+        assertEquals("1", browser.findElement(By.className("_mini-shop-cart-quantity")).getText());
 
-        assertEquals(browser.findElement(By.className("_mini-shop-cart-quantity")).getText(), "1");
+        emptyCart();
     }
 
-    @When("I add <num-products> products to my shopping cart")
-    public void iAddProductsToMyShoppingCart(){
 
+
+    @When("I add {int} products to my shopping cart")
+    public void iAddProductsToMyShoppingCart(int num){
+        iViewTheDetailsOfAProduct();
+
+        for(int a = 0; a < num; a++) {
+            browser.findElement(By.className("_add-to-cart-btn")).click();
+            sleep(2);
+        }
     }
 
-    @Then("My shopping cart should contain <num-products> items")
-    public void myShoppingCartShouldContainItems(){
+    @Then("My shopping cart should contain {int} items")
+    public void myShoppingCartShouldContainItems(int num){
+        String num2 = Integer.toString(num);
 
+        assertEquals(num2, browser.findElement(By.className("_mini-shop-cart-quantity")).getText());
+
+        emptyCart();
     }
 
     @And("My shopping cart has 2 items")
     public void myShoppingCartHasTwoItems(){
-        emptyCart();
+        myShoppingCartIsEmpty();
 
         iViewTheDetailsOfAProduct();
 
@@ -163,7 +185,7 @@ public class NextStepDefs {
         sleep(3);
 
         // Verify 2 items
-        assertEquals(browser.findElement(By.className("_mini-shop-cart-quantity")).getText(), "2");
+        assertEquals("2", browser.findElement(By.className("_mini-shop-cart-quantity")).getText());
 
         // Go to cart
         browser.findElement(By.className("_mini-shop-cart-link")).click();
