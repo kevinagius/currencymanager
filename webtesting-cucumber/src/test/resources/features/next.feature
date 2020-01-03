@@ -16,9 +16,9 @@ Feature: ZaraMalta
 ##    And I select the first product in the list
 ##    Then I should see the product details
 
-    Scenario: Add a product to cart
-      Given I am a logged in user on the website
-      And My shopping cart is empty
-      When I view the details of a product
-      And I choose to buy the product
-      Then My shopping cart should contain 1 item
+##    Scenario: Add a product to cart
+##      Given I am a logged in user on the website
+##      And My shopping cart is empty
+##      When I view the details of a product
+##      And I choose to buy the product
+##      Then My shopping cart should contain 1 item

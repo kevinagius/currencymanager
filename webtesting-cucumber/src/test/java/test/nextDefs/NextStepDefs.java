@@ -94,7 +94,7 @@ public class NextStepDefs {
 
     @And("My shopping cart is empty")
     public void myShoppingCartIsEmpty() {
-        assertTrue(browser.findElement(By.linkText("0")).isDisplayed());
+        assertEquals(browser.findElement(By.className("_mini-shop-cart-quantity")).getText(), "0");
     }
 
     @When("I view the details of a product")
@@ -113,12 +113,24 @@ public class NextStepDefs {
 
     @And("I choose to buy the product")
     public void iChooseToBuyTheProduct(){
-        browser.findElement(By.className("button button-primaryB button-big _add-to-cart-btn")).click();
-        sleep(10);
+        browser.findElement(By.className("_add-to-cart-btn")).click();
+        sleep(5);
     }
 
     @Then("My shopping cart should contain 1 item")
     public void myShoppingCartShouldContain1Item(){
-        assertTrue(browser.findElement(By.linkText("1")).isDisplayed());
+        assertEquals(browser.findElement(By.className("_mini-shop-cart-quantity")).getText(), "1");
+    }
+
+    @When("I add <num-products> products to my shopping cart")
+    public void iAddProductsToMyShoppingCart(){
+
+
+    }
+
+    @Then("My shopping cart should contain <num-products> items")
+    public void myShoppingCartShouldContainItems(){
+
+
     }
 }
