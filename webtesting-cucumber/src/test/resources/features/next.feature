@@ -22,3 +22,15 @@ Feature: ZaraMalta
 ##      When I view the details of a product
 ##      And I choose to buy the product
 ##      Then My shopping cart should contain 1 item
+
+  Scenario: Add multiple products to cart
+    Given I am a logged in user on the website
+    And My shopping cart is empty
+    When I add <num-products> products to my shopping cart
+    Then My shopping cart should contain <num-products> items
+
+##  Scenario: Removing a product from cart
+##    Given I am a logged in user on the website
+##    And My shopping cart has 2 items
+##    When I remove the first product in my cart
+##    Then My shopping cart should contain 1 item

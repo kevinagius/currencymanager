@@ -9,6 +9,9 @@ import cucumber.api.java.en.And;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.lang.reflect.Array;
+
 import static org.junit.Assert.*;
 
 public class NextStepDefs {
@@ -69,7 +72,19 @@ public class NextStepDefs {
         browser.findElement(By.name("email")).sendKeys("kevinuagius@gmail.com");
         browser.findElement(By.name("password")).sendKeys("Abcd1234");
         browser.findElement(By.id("login-button")).click();
+        sleep(5);
+    }
+
+    public void emptyCart(){
+        browser.findElement(By.className("_mini-shop-cart-link")).click();
         sleep(3);
+        browser.findElement(By.className("typography--xxs")).click();
+        sleep(1);
+
+        //Go back home
+        browser.findElement(By.className("layout-header__logo-icon")).click();
+        sleep(3);
+
     }
 
     @When("I search for a product")
@@ -119,18 +134,46 @@ public class NextStepDefs {
 
     @Then("My shopping cart should contain 1 item")
     public void myShoppingCartShouldContain1Item(){
+        browser.findElement(By.className("layout-header__logo-icon")).click();
+        sleep(3);
+
         assertEquals(browser.findElement(By.className("_mini-shop-cart-quantity")).getText(), "1");
     }
 
     @When("I add <num-products> products to my shopping cart")
     public void iAddProductsToMyShoppingCart(){
 
-
     }
 
     @Then("My shopping cart should contain <num-products> items")
     public void myShoppingCartShouldContainItems(){
 
+    }
+
+    @And("My shopping cart has 2 items")
+    public void myShoppingCartHasTwoItems(){
+        emptyCart();
+
+        iViewTheDetailsOfAProduct();
+
+        //Adding the 2 items
+        browser.findElement(By.className("_add-to-cart-btn")).click();
+        sleep(3);
+        browser.findElement(By.className("_add-to-cart-btn")).click();
+        sleep(3);
+
+        // Verify 2 items
+        assertEquals(browser.findElement(By.className("_mini-shop-cart-quantity")).getText(), "2");
+
+        // Go to cart
+        browser.findElement(By.className("_mini-shop-cart-link")).click();
+        sleep(3);
+    }
+
+    @When("I remove the first product in my cart")
+    public void iRemoveTheFirstProductInMyCart(){
+        browser.findElement(By.className("shop-cart-item-amount__decrease")).click();
+        sleep(5);
 
     }
 }
