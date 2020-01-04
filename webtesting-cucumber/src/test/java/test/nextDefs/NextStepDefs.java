@@ -50,7 +50,7 @@ public class NextStepDefs {
 
     @Then("I should be logged in")
     public void iShouldBeLoggedIn() {
-        assertTrue(browser.findElement(By.linkText("KEVIN")).isDisplayed());
+        assertTrue(browser.findElement(By.className("_userName")).isDisplayed());
     }
 
     @When("I log in using invalid credentials")
