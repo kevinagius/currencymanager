@@ -17,16 +17,20 @@ public class Operator {
                 System.setProperty("webdriver.chrome.driver", "/users/Kevin/Downloads/chromedriver.exe");
                 driver = new ChromeDriver();
 
-                driver.get("https://www.zara.com/mt/");
+                driver.get("https://www.zara.com/mt/en/logon");
         }
+
+
 
         boolean logIn(){
                 // Go back to home
-                driver.findElement(By.className("layout-header__logo-icon")).click();
-                sleep(2);
+                if(driver == null){
+                        setDriver();
 
-                if(signedOut = true){
-                        driver.findElement(By.className("_login account-link-login")).click();
+                }
+
+                if(signedOut == true){
+                        //driver.findElement(By.className("_login account-link-login")).click();
                         sleep(2);
 
                         driver.findElement(By.name("email")).sendKeys("kevinuagius@gmail.com");
@@ -34,8 +38,9 @@ public class Operator {
                         driver.findElement(By.id("login-button")).click();
                         sleep(2);
 
-                        signedOut = false;
+
                         signedIn = true;
+                        signedOut = false;
                 }
 
                 return true;
@@ -118,6 +123,25 @@ public class Operator {
                 return true;
         }
 
+        boolean viewCart(){
+                if(viewCart = false){
+                        driver.findElement(By.className("layout-header__logo-icon")).click();
+                        sleep(2);
+
+                        driver.findElement(By.className("_mini-shop-cart-link")).click();
+                        sleep(3);
+
+                        viewCart = true;
+                } else {
+
+                        viewCart = true;
+
+                }
+
+
+                return true;
+        }
+
         boolean emptyCart(){
                 if(viewCart = false){
                         //Go to cart
@@ -166,6 +190,12 @@ public class Operator {
                 return true;
         }
 
+        public boolean isCheckOut() {return checkOut;}
+        public boolean isSignedIn() {return signedIn;}
+        public boolean isSignedOut() {return signedOut;}
+        public boolean isViewCart() {return viewCart;}
+        public boolean isViewProduct() {return viewProduct;}
+        public boolean isViewSearches() {return viewSearches;}
 }
 
 
