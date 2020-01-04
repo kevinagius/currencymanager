@@ -2,6 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5bc74411-652d-40a5-922d-1c7f9bd27902" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../secondpart/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../secondpart/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../secondpart/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../secondpart/secondpart.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../secondpart/src/main/java/Operator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../secondpart/src/main/java/Operator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../secondpart/src/test/java/OperatorModelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../secondpart/src/test/java/OperatorModelTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../secondpart/target/classes/Operator.class" beforeDir="false" afterPath="$PROJECT_DIR$/../secondpart/target/classes/Operator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../secondpart/target/test-classes/OperatorModelTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../secondpart/target/test-classes/OperatorModelTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />

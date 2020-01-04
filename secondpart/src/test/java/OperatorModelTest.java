@@ -12,6 +12,7 @@ import nz.ac.waikato.modeljunit.coverage.StateCoverage;
 import nz.ac.waikato.modeljunit.coverage.TransitionPairCoverage;
 import org.junit.Test;
 
+
 import java.util.Random;
 
 
@@ -22,21 +23,23 @@ public class OperatorModelTest implements FsmModel {
     //public static WebDriver driver;
 
     private WebStates operatorModel = WebStates.LOGGED_OUT;
-    private boolean signedOut = true, signedIn = false, viewSearches = false, viewProduct = false, viewCart = false, checkOut = false;
+    private boolean signedOut, signedIn, viewSearches, viewProduct, viewCart, checkOut;
 
     public WebStates getState() { return operatorModel;  }
 
     public void reset(final boolean var1){
-        if(var1){
-            test = new Operator();
-        }
         operatorModel = WebStates.LOGGED_OUT;
+        test.logOut();
         signedOut = true;
         signedIn = false;
         viewSearches = false;
         viewProduct = false;
         viewCart = false;
         checkOut = false;
+        //
+        if(var1){
+            test = new Operator();
+        }
     }
 
     public boolean loginGuard(){  return getState().equals(WebStates.LOGGED_OUT); }
@@ -49,18 +52,18 @@ public class OperatorModelTest implements FsmModel {
         assertEquals("The system under test's login state does not match the model's state",signedIn, test.isSignedIn());
     }
 
-    public boolean logoutGuard(){ return !getState().equals(WebStates.LOGGED_OUT); }
+    public boolean logoutGuard(){ return getState().equals(WebStates.LOGGED_IN); }
     public @Action void logout(){
         test.logOut();
 
-        operatorModel = WebStates.LOGGED_OUT;
+
         signedIn = false;
         signedOut = true;
-
+        operatorModel = WebStates.LOGGED_OUT;
         assertEquals("The system under test's logout state does not match the model's state",signedOut, test.isSignedOut());
     }
 
-    public boolean viewSearchesGuard(){ return getState().equals(WebStates.VIEW_SEARCHES); }
+    public boolean viewSearchesGuard(){ return getState().equals(WebStates.LOGGED_IN); }
     public @Action void viewSearches(){
         test.search();
 
@@ -70,7 +73,7 @@ public class OperatorModelTest implements FsmModel {
         assertEquals("The system under test's search state does not match the model's state",viewSearches, test.isViewSearches());
     }
 
-    public boolean viewProductGuard(){ return getState().equals(WebStates.VIEW_PRODUCTS); }
+    public boolean viewProductGuard(){ return getState().equals(WebStates.VIEW_SEARCHES); }
     public @Action void viewProduct(){
         test.viewProduct();
 
@@ -80,7 +83,7 @@ public class OperatorModelTest implements FsmModel {
         assertEquals("The system under test's product state does not match the model's state",viewProduct, test.isViewProduct());
     }
 
-    public boolean viewCartGuard(){ return getState().equals(WebStates.VIEW_CART); }
+    public boolean viewCartGuard(){ return getState().equals(WebStates.VIEW_PRODUCTS); }
     public @Action void viewCart(){
         test.viewCart();
 
@@ -92,7 +95,7 @@ public class OperatorModelTest implements FsmModel {
         assertEquals("The system under test's cart state does not match the model's state",viewCart, test.isViewCart());
     }
 
-    public boolean checkoutGuard(){ return getState().equals(WebStates.CHECKOUT); }
+    public boolean checkoutGuard(){ return (getState().equals(WebStates.VIEW_CART)); }
     public @Action void checkout(){
         test.checkOut();
 
@@ -102,6 +105,23 @@ public class OperatorModelTest implements FsmModel {
 
         assertEquals("The system under test's checkout state does not match the model's state",checkOut, test.isCheckOut());
     }
+
+   /* @Before
+    public void setup(){
+        System.setProperty("webdriver.chrome.driver", "/users/Kevin/Downloads/chromedriver.exe");
+        driver = new ChromeDriver();
+
+        driver.get("https://www.zara.com/mt/en/logon");
+
+    }
+
+    @After
+
+    public void teardown(){
+        driver.quit();
+    }
+
+    */
 
 
     @Test

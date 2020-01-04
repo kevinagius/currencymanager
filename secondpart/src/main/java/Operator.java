@@ -17,7 +17,9 @@ public class Operator {
                 System.setProperty("webdriver.chrome.driver", "/users/Kevin/Downloads/chromedriver.exe");
                 driver = new ChromeDriver();
 
-                driver.get("https://www.zara.com/mt/en/logon");
+                driver.manage().window().maximize();
+
+                driver.get("https://www.zara.com/mt/");
         }
 
 
@@ -29,8 +31,9 @@ public class Operator {
 
                 }
 
+
                 if(signedOut == true){
-                        //driver.findElement(By.className("_login account-link-login")).click();
+                        driver.findElement(By.className("account-link-login")).click();
                         sleep(2);
 
                         driver.findElement(By.name("email")).sendKeys("kevinuagius@gmail.com");
@@ -41,23 +44,48 @@ public class Operator {
 
                         signedIn = true;
                         signedOut = false;
+                } else {
+                        signedIn = true;
+                        return true;
+
                 }
 
+
                 return true;
+
         }
 
         boolean logOut(){
-                driver.findElement(By.className("layout-header__logo-icon")).click();
-                sleep(2);
 
-                if(signedIn = true){
+                /*
+                if(viewCart == true || checkOut == true) {
+                 driver.findElement(By.className("layout-header__logo")).findElement(By.tagName("a")).click();
+                 signedOut = true;
+                 sleep(2);
+                }
+
+                 */
+
+                if((signedOut == false) && (checkOut == true)){
+                        driver.findElement(By.className("button--secondary")).click();
+                        sleep(2);
+
+                        driver.findElement(By.className("layout-header__logo-icon")).click();
+                        sleep(2);
+                        checkOut = false;
+
+
+                }
+
+                        if(signedOut == false){
                         driver.findElement(By.className("_userName")).click();
                         sleep(2);
 
-                        driver.findElement(By.className("_logout")).click();
+                        driver.findElement(By.className("_logout")).findElement(By.tagName("a")).click();
+
                         sleep(2);
 
-                        signedIn = false;
+                        //signedIn = false;
                         signedOut = true;
                 }
 
@@ -65,7 +93,7 @@ public class Operator {
         }
 
         boolean search(){
-                if((viewCart = true )|| (checkOut = true)){
+                if((viewCart == true )|| (checkOut == true)){
                         //Go to home
                         driver.findElement(By.className("layout-header__logo-icon")).click();
                         sleep(2);
@@ -74,9 +102,10 @@ public class Operator {
                 }
 
 
-                driver.findElement(By.className("_searchButton")).click();
+                driver.findElement(By.className("_searchButton")).findElement(By.tagName("a")).click();
                 sleep(3);
 
+                driver.findElement(By.name("searchTerm")).clear();
                 driver.findElement(By.name("searchTerm")).sendKeys("bracelet");
                 sleep(3);
 
@@ -86,8 +115,11 @@ public class Operator {
         }
 
         boolean viewProduct(){
-                if(viewSearches = true){
-                        driver.findElement(By.className("_imageLoaded")).click();
+                if(viewSearches == true){
+                        driver.findElement(By.id("product-34150014")).findElement(By.tagName("a")).click();
+                        sleep(2);
+
+                        driver.findElement(By.className("_add-to-cart-btn")).click();
                         sleep(2);
 
                         viewSearches = false;
@@ -97,17 +129,8 @@ public class Operator {
                 return true;
         }
 
-        boolean addProduct(){
-                if(viewProduct = true){
-                        driver.findElement(By.className("_add-to-cart-btn")).click();
-                        sleep(2);
-                }
-
-                return true;
-        }
-
         boolean removeProduct(){
-                if(viewCart = false){
+                if(viewCart == false){
                         driver.findElement(By.className("_mini-shop-cart-link")).click();
                         sleep(3);
                         viewCart = true;
@@ -124,18 +147,11 @@ public class Operator {
         }
 
         boolean viewCart(){
-                if(viewCart = false){
-                        driver.findElement(By.className("layout-header__logo-icon")).click();
-                        sleep(2);
-
+                if(viewCart == false){
                         driver.findElement(By.className("_mini-shop-cart-link")).click();
                         sleep(3);
 
                         viewCart = true;
-                } else {
-
-                        viewCart = true;
-
                 }
 
 
@@ -143,7 +159,7 @@ public class Operator {
         }
 
         boolean emptyCart(){
-                if(viewCart = false){
+                if(viewCart == false){
                         //Go to cart
                         driver.findElement(By.className("_mini-shop-cart-link")).click();
                         sleep(3);
@@ -162,22 +178,28 @@ public class Operator {
         }
 
         boolean checkOut(){
-                if(viewCart = false && !(driver.findElement(By.className("_mini-shop-cart-quantity")).getText().equals("0"))){
+
+                // && !(driver.findElement(By.className("_mini-shop-cart-quantity")).getText().equals("0"))
+                /*if(viewCart == false){
                         //Go to cart
-                        driver.findElement(By.className("_mini-shop-cart-link")).click();
+                        driver.findElement(By.className("_mini-shop-cart-link")).findElement(By.tagName("a")).click();
                         sleep(3);
                         viewCart = true;
-                } else {
-                        driver.findElement(By.className("layout-header__logo-icon")).click();
-                        sleep(2);
                 }
 
-                if((viewCart = true) && (signedIn = true)){
-                        driver.findElement(By.className("button shop-cart-next-button ")).click();
+                 */
+
+                        //if((viewCart == true) && (signedIn == true)){
+                        driver.findElement(By.className("shop-cart-next-button")).click();
                         viewCart = false;
                         checkOut = true;
-                } else{
-                        driver.findElement(By.className("button shop-cart-next-button ")).click();
+                        // }
+                        //
+
+                //else{
+                //
+                if(signedIn == false) {
+                      //  driver.findElement(By.className("button shop-cart-next-button ")).click();
                         driver.findElement(By.name("email")).sendKeys("kevinuagius@gmail.com");
                         driver.findElement(By.name("password")).sendKeys("Abcd1234");
                         driver.findElement(By.id("login-button")).click();
@@ -186,6 +208,9 @@ public class Operator {
                         checkOut = true;
                         signedIn = true;
                 }
+                //}
+                //
+                sleep(2);
 
                 return true;
         }
