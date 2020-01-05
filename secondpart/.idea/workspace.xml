@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="6ad67bc1-eefa-48bf-90e2-c09ea3a39b9f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Operator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Operator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/OperatorModelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/OperatorModelTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../webtesting-cucumber/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../webtesting-cucumber/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webtesting-cucumber/src/test/resources/features/next.feature" beforeDir="false" afterPath="$PROJECT_DIR$/../webtesting-cucumber/src/test/resources/features/next.feature" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
