@@ -1,7 +1,3 @@
-import org.junit.After;
-import org.junit.Before;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import states.WebStates;
 import nz.ac.waikato.modeljunit.Action;
 import nz.ac.waikato.modeljunit.FsmModel;
@@ -20,7 +16,7 @@ import static org.junit.Assert.assertEquals;
 
 public class OperatorModelTest implements FsmModel {
     private Operator test = new Operator();
-    //public static WebDriver driver;
+
 
     private WebStates operatorModel = WebStates.LOGGED_OUT;
     private boolean signedOut, signedIn, viewSearches, viewProduct, viewCart, checkOut;
@@ -36,7 +32,7 @@ public class OperatorModelTest implements FsmModel {
         viewProduct = false;
         viewCart = false;
         checkOut = false;
-        //
+
         if(var1){
             test = new Operator();
         }
@@ -106,22 +102,7 @@ public class OperatorModelTest implements FsmModel {
         assertEquals("The system under test's checkout state does not match the model's state",checkOut, test.isCheckOut());
     }
 
-   /* @Before
-    public void setup(){
-        System.setProperty("webdriver.chrome.driver", "/users/Kevin/Downloads/chromedriver.exe");
-        driver = new ChromeDriver();
 
-        driver.get("https://www.zara.com/mt/en/logon");
-
-    }
-
-    @After
-
-    public void teardown(){
-        driver.quit();
-    }
-
-    */
 
 
     @Test

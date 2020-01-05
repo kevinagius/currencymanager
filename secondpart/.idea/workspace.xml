@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ad67bc1-eefa-48bf-90e2-c09ea3a39b9f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/secondpart.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Operator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Operator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/OperatorModelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/OperatorModelTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Operator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Operator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/OperatorModelTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/OperatorModelTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../webtesting-cucumber/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../webtesting-cucumber/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -90,7 +86,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

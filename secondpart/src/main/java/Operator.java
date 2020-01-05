@@ -25,7 +25,7 @@ public class Operator {
 
 
         boolean logIn(){
-                // Go back to home
+
                 if(driver == null){
                         setDriver();
 
@@ -56,15 +56,6 @@ public class Operator {
         }
 
         boolean logOut(){
-
-                /*
-                if(viewCart == true || checkOut == true) {
-                 driver.findElement(By.className("layout-header__logo")).findElement(By.tagName("a")).click();
-                 signedOut = true;
-                 sleep(2);
-                }
-
-                 */
 
                 if((signedOut == false) && (checkOut == true)){
                         driver.findElement(By.className("button--secondary")).click();
@@ -129,22 +120,6 @@ public class Operator {
                 return true;
         }
 
-        boolean removeProduct(){
-                if(viewCart == false){
-                        driver.findElement(By.className("_mini-shop-cart-link")).click();
-                        sleep(3);
-                        viewCart = true;
-                }
-
-                if(driver.findElement(By.className("_units")).getText().equals("1")){
-                        emptyCart();
-                }else {
-                        driver.findElement(By.className("shop-cart-item-amount__decrease")).click();
-                        sleep(5);
-                }
-
-                return true;
-        }
 
         boolean viewCart(){
                 if(viewCart == false){
@@ -158,48 +133,15 @@ public class Operator {
                 return true;
         }
 
-        boolean emptyCart(){
-                if(viewCart == false){
-                        //Go to cart
-                        driver.findElement(By.className("_mini-shop-cart-link")).click();
-                        sleep(3);
-                        viewCart = true;
-                }
-
-                //Click the delete
-                driver.findElement(By.className("typography--xxs")).click();
-                sleep(1);
-                //Then go to home
-                driver.findElement(By.className("layout-header__logo-icon")).click();
-                sleep(2);
-
-
-                return true;
-        }
 
         boolean checkOut(){
 
-                // && !(driver.findElement(By.className("_mini-shop-cart-quantity")).getText().equals("0"))
-                /*if(viewCart == false){
-                        //Go to cart
-                        driver.findElement(By.className("_mini-shop-cart-link")).findElement(By.tagName("a")).click();
-                        sleep(3);
-                        viewCart = true;
-                }
 
-                 */
-
-                        //if((viewCart == true) && (signedIn == true)){
                         driver.findElement(By.className("shop-cart-next-button")).click();
                         viewCart = false;
                         checkOut = true;
-                        // }
-                        //
 
-                //else{
-                //
                 if(signedIn == false) {
-                      //  driver.findElement(By.className("button shop-cart-next-button ")).click();
                         driver.findElement(By.name("email")).sendKeys("kevinuagius@gmail.com");
                         driver.findElement(By.name("password")).sendKeys("Abcd1234");
                         driver.findElement(By.id("login-button")).click();
@@ -208,8 +150,6 @@ public class Operator {
                         checkOut = true;
                         signedIn = true;
                 }
-                //}
-                //
                 sleep(2);
 
                 return true;
